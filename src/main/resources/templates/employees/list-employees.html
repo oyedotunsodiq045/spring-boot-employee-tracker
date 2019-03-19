@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- Favicon -->
+		<!-- link rel="apple-touch-icon" sizes="180x180" th:href="@{/images/favicon/apple-touch-icon.png}" -->
+		<!-- link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon/favicon-32x32.png}" -->
+		<link rel="icon" type="image/png" sizes="16x16" th:href="@{/images/favicon/favicon-16x16.png}">
+		<!-- link rel="manifest" th:href="@{/images/favicon/site.webmanifest}" -->
+	
+		<!-- Bootstrap CSS -->
+    	<!-- link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" -->
+	    
+	    <!-- Local Bootstrap -->
+	    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/bootstrap/bootstrap.min.css}" />
+	    
+	    <!-- Animate CSS -->
+	    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/animate/animate.css}" />
+    
+	    <!-- Font Awesome -->
+	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+		<!-- link rel="stylesheet" type="text/css" media="all" th:href="@{/css/fontawesome/all.css}" / -->
+	    
+	    <!-- Christmas CSS -->
+	    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/christmasify/cf-christmasification-public.css}" />
+	    
+		<meta charset="ISO-8859-1">
+		
+		<title>EMPLOYEES LIST</title>
+	</head>
+	<body>
+	
+		<!-- As a heading -->
+		<nav class="navbar navbar-dark bg-primary">
+		  <span class="navbar-brand mb-0 h1 animated bounceInLeft delay-2s">Sattrak Employees <i class="fas fa-users"></i></span>
+		  
+		<form class="form-inline" action="EmployeeControllerServlet" method="GET">
+			<input type="hidden" name="command" value="SEARCH" />
+		    <input name="theSearchName" class="form-control mr-sm-2" type="search" placeholder="Search Employee" aria-label="Search">
+		    <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search <i class="fas fa-search"></i></button>
+	  	</form>	  
+		  
+		</nav>
+		
+		<a th:href="@{/employees/add-employee}">
+			<button type="button" class="btn btn-primary btn-sm ml-3 mt-3 mb-3">
+				Add Employee <i class="fas fa-user-plus"></i>
+			</button>
+		</a>
+		
+		<table class="table table-hover">
+		  <thead class="">
+		    <tr>
+		      <th scope="col">First Name</th>
+		      <th scope="col">Last Name</th>
+		      <th scope="col">Department</th>
+		      <th scope="col">Email</th>
+		      <th scope="col">Designation</th>
+		      <th scope="col">Phone</th>
+		      <th scope="col">Action</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	<tr th:each="tempEmployee : ${employees}">
+		      <td th:text="${tempEmployee.firstName}" />
+		      <td th:text="${tempEmployee.lastName}" />
+		      <td th:text="${tempEmployee.department}" />
+		      <td th:text="${tempEmployee.email}" />
+		      <td th:text="${tempEmployee.designation}" />
+		      <td th:text="${tempEmployee.phoneNumber}" />
+		      <td>
+		      	<a class="btn btn-sm btn-warning" href="${tempLink}" role="button">Edit <i class="fas fa-user-edit"></i></a>
+		      	<a class="btn btn-sm btn-danger" href="${deleteLink}" 
+		      		onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false" role="button">Delete <i class="fas fa-user-times"></i></a>
+		      </td>
+		    </tr>
+		  </tbody>
+		</table>	
+		
+		<div id="snowflakes">
+	    	<i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+	    </div>
+	    <div id="santa" class="sleigh-1"></div>
+		
+		<!-- Optional JavaScript -->
+	    <!-- FreeTutorials Christmasify JS -->
+	    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	    <script src="js/cf-christmasification-public.js"></script>
+	    <script>
+		    window.addEventListener("load", function() {
+				jQuery(document).ready(function($){
+					$(document).christmasify({
+			      snowflakes: true,
+			      santa: true,
+			      music: false,
+			      image_frame: false,
+			      font: false
+			      });
+				});
+			});
+	    </script>
+	    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+	    <!-- Local JS -->
+	    <!-- script th:src="|${/js/bootstrap}/bootstrap.min.js|"></script -->
+	    <script th:src="@{/js/bootstrap/bootstrap.min.js}"></script>
+	    <!-- script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script -->
+	</body>
+</html>
